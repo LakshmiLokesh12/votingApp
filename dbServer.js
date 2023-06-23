@@ -4,7 +4,7 @@ const mysql = require("mysql")
 
 const bcrypt = require("bcrypt")
 app.use(express.json())
-//middleware to read req.body.<params>
+
 //CREATE USER
 app.post("/createUser", async (req,res) => {
 const user = req.body.name;
@@ -15,8 +15,8 @@ db.getConnection( async (err, connection) => {
  const search_query = mysql.format(sqlSearch,[user])
  const sqlInsert = "INSERT INTO userTable VALUES (0,?,?)"
  const insert_query = mysql.format(sqlInsert,[user, hashedPassword])
- // ? will be replaced by values
- // ?? will be replaced by string
+ 
+ 
  await connection.query (search_query, async (err, result) => {
   if (err) throw (err)
   console.log("------> Search Results")
@@ -35,9 +35,9 @@ db.getConnection( async (err, connection) => {
    res.sendStatus(201)
   })
  }
-}) //end of connection.query()
-}) //end of db.getConnection()
-}) //end of app.post()
+}) 
+}) 
+})
 
 //LOGIN (AUTHENTICATE USER)
 app.post("/login", (req, res)=> {
@@ -65,15 +65,15 @@ app.post("/login", (req, res)=> {
        else {
        console.log("---------> Password Incorrect")
        res.send("Password incorrect!")
-       } //end of bcrypt.compare()
-     }//end of User exists i.e. results.length==0
-    }) //end of connection.query()
-   }) //end of db.connection()
-   }) //end of app.post()
+       } 
+     }
+    }) 
+   }) 
+   }) 
   
    
 
-
+/*
 
    const generateAccessToken = require("./generateAccessToken")
    //import the generateAccessToken function
@@ -105,11 +105,13 @@ app.post("/login", (req, res)=> {
       } else {
        res.send("Password incorrect!")
       } //end of Password incorrect
-   }//end of User exists
-   }) //end of connection.query()
-   }) //end of db.connection()
-   }) //end of app.post()
+   }
+   }) 
+   }) 
+   }) 
    
+*/
+
 
 /*
 const db = mysql.createPool({
